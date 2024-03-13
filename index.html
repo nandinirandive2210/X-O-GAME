@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Zudio Dashboard</title>
+    <style>
+       body {
+    font-family: "Times New Roman";
+    margin: 0;
+    padding: 0;
+    background-image: url("Helo.jpg");
+    background-size: cover;
+    
+    background-repeat: no-repeat;
+}
+
+
+        header {
+             background-color:black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color:plum;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        canvas {
+            max-width: 80%;
+            margin: 20px auto;
+        }
+  footer{
+color:white;
+background-color:black;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zudio Dashboard</h1>
+        <nav>
+            <ul>
+                <li onclick="showGraph('women')">WOMENS</li>
+                <li onclick="showGraph('kids')">KIDS</li>
+                <li onclick="showGraph('men')">MENS</li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="dashboard">
+        <!-- Placeholder content will be loaded dynamically here -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Zudio</p>
+    </footer>
+
+    <script>
+        function showGraph(section) {
+            document.getElementById('dashboard').innerHTML = '<canvas id="chart"></canvas>';
+
+            // Placeholder data for the graph
+            const data = {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                values: [100, 200, 150, 250, 300],
+            };
+
+            const ctx = document.getElementById('chart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: `${section.charAt(0).toUpperCase() + section.slice(1)} Sales`,
+                        data: data.values,
+                        backgroundColor: 'lightblue',
+                        borderColor: 'white',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
